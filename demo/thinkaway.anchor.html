@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./js/thinkaway.js"></script>
+<script type="text/javascript" src="./js/thinkaway.scroller.js"></script>
+<script type="text/javascript" src="./js/thinkaway.anchor.js"></script>
+<style type="text/css">
+.box {
+  height:620px;
+  line-height:300px;
+  text-align:center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 100px; 
+  color: #DDD;
+  margin-top:20px;
+  border: solid 3px #DDD;
+  background-color: #FFF;
+  border-radius: 15px; 
+}
+</style>
+</head>
+<body>
+  <div id="header">
+    <h2>Demo</h2>
+    <div><a href="#a">[A] 跳转</a></div>
+    <div><a href="#b">[B] 跳转</a></div>
+    <div><a href="?#c">[C] 跳转</a></div>
+    <div><a href="thinkaway.anchor.html#d" target="_blank">[D] 新窗口</a></div>
+  </div>
+  <div id="main">
+    <div class="box" id="a"> A </div>
+    <div class="top"><a href="#header">TOP</a></div>
+    <div class="box" id="b"> B </div>
+    <div class="top"><a href="#header">TOP</a></div>
+    <div class="box" id="c"> C </div>
+    <div class="top"><a href="#header">TOP</a></div>
+    <div class="box" id="d"> D </div>
+    <div class="top"><a href="#header">TOP</a></div>
+  </div>
+</body>
+<script>
+//enable anchor
+$.Anchor();
+</script>
+</html>

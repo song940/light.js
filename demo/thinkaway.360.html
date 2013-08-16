@@ -1,0 +1,76 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>360度图片旋转</title>
+<link href="./css/thinkaway.css" type="text/css" rel="stylesheet" />
+<link href="./css/thinkaway-ui.css" type="text/css" rel="stylesheet" />
+<style>
+#img1{
+	margin:auto;
+}
+#progress {font-family:Georgia,Tahoma,Arial;}
+#prog {width:324px; height:40px; background:url(./img/bar.png) no-repeat 0 bottom; position:absolute; z-index:2; top:50%; left:50%; margin:-20px 0 0 -162px; font-family:"微软雅黑",arial; font-size:12px; color:#fff; text-align:center;}
+#bar {width:0%; height:16px; background:url(./img/bar_line.png) repeat-x; overflow:hidden; position:absolute; bottom:2px; left:2px;}
+#bg {width:100%; height:100%; position:absolute; left:0; top:0; filter:alpha(opacity:60); opacity:0.6; background:black; z-index:1;}
+</style>
+<script type="text/javascript" src="./js/thinkaway.js" ></script>
+<script type="text/javascript" src="./js/thinkaway.dom.js" ></script>
+<script type="text/javascript" src="./js/thinkaway.360.js" ></script>
+<script>
+(function($){
+$.extend($,{
+	img360:function(options){
+			var progress = 0;
+			var imgCount = 36;
+			var startIndex = 1;
+			for(var i = 0;i < imgCount;i++){
+				index = startIndex + i;
+				if(index < 10){
+					index = '0' + index;
+				}
+				var src = 'img/cube/' + index + '.jpg';
+				$("#img1").append($('<img').css('display','none').on('load',function(){
+					options.progress(Math.ceil(100 * progress / imgCount));
+					if(++progress==imgCount)options.complate(this);
+				}).attr('src',src));				
+			}
+	}
+});
+
+$(document).ready(function(){
+	$.img360({
+		xml:'data.xml',
+		progress:function(value){
+			$("#progress").html(value + '%');
+			$("#bar").css("width",value + '%');
+		},
+		complate:function(){
+			$("#bg").css("display","none");
+			$("#prog").css("display","none");
+			
+			$("#img1").img360({
+				scale:20,	
+				speed:0.8,
+				error:function(i){
+					alert('load error!'+i)
+				},
+			});
+		}
+	});
+	
+});
+})(ThinkAway);
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div id="bg"></div>
+<div id="prog">
+	载入中...<span id="progress">0%</span>
+	<div id="bar"></div>
+</div>
+<div id="img1"></div>
+</div>
+</body>
+</html>

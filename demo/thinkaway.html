@@ -1,0 +1,58 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="scroll">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-script-type" content="text/javascript">
+<title></title>
+<link rel="stylesheet" href="./css/thinkaway.css"  />
+<link rel="stylesheet" href="./css/thinkaway-ui.css"  />
+<link rel="stylesheet" href="./css/thinkaway-console.css"  />
+<style>
+.spinner {
+    background: #aaa;
+    color: black;
+    width: 220px;
+    height: 220px;
+    margin: 0 20px;
+    float: left;
+    border-radius: 10px;
+  }
+</style>
+<script type="text/javascript" src="./js/thinkaway.js"></script>
+<script type="text/javascript" src="./js/thinkaway.loader.js"></script>
+<script>
+$(function(){
+
+	// $.DOM.createMask(function(){
+	// 	this.show();
+	// 	this.click = function(){
+	// 		this.close();
+	// 	}
+	// });
+	// 
+	$.DOM.createMask();
+
+	$.loader(['drag','console'],function(){
+		//$.console.show();
+	});
+	$.loader('animate',function(){
+		
+	});
+
+	$.loader('../../../../spin/spin',function(){
+		
+
+	});
+});
+</script>
+</head>
+<body >
+<div id='test' class='loading'>
+ThinkAway
+=========
+
+ThinkAway.js , ThinkAway.css
+</div>
+</body>
+</html>

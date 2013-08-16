@@ -1,0 +1,163 @@
+.console{
+	z-index: 999;	
+	padding: 5px;
+	width: 300px;
+	height: 250px;	
+	color: white;	
+	font-size: 12px;	
+	display:none;
+	overflow:hide;
+	border: 2px solid #BBB;
+	/*filter: Alpha(opacity:75);*/
+	background: rgba(0, 0, 0, 0.75);
+	
+	top:50%;
+	left:10%;
+	
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.75);	
+	font-family: "Courier New", Consolas, "LucidaConsole", Monaco, monospace;
+	
+	SCROLLBAR-ARROW-COLOR:#bbb;
+	SCROLLBAR-FACE-COLOR:#bbb;
+	SCROLLBAR-DARKSHADOW-COLOR:#ccc;
+	SCROLLBAR-HIGHLIGHT-COLOR:#ccc;
+	SCROLLBAR-3DLIGHT-COLOR:#ccc;
+	SCROLLBAR-SHADOW-COLOR:#ccc;
+	SCROLLBAR-TRACK-COLOR:#ccc;
+}	
+.console ::-webkit-scrollbar{width:4px;height:4px;background:transparent;}
+.console ::-webkit-scrollbar-track-piece{background:transparent}
+.console ::-webkit-scrollbar-button{background:transparent;}
+.console ::-webkit-scrollbar-thumb{background-color:#9f9f9f;-webkit-border-radius:3px}
+/*.console ::-webkit-scrollbar-thumb:hover{background-color:#9f9f9f}*/
+
+.console a{
+	float: right;
+	width: 20px;
+	height: 18px;
+	margin: 1px 1px;
+	padding: 0px;
+	color: #666;
+	cursor: pointer;
+	line-height: 16px;
+	font-weight: bold;
+	font-family: Verdana;
+	text-align: center;
+	text-decoration: none;
+	background: white;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	
+}
+.console a:hover{
+	background:#f70;
+}
+
+.console #console-header{
+	padding:3px;
+	height:20px;
+	cursor: default;
+	line-height: 20px;
+	font-family: Verdana;
+	background: rgba(255, 255, 255, 0.1);
+}
+.console .console-display{
+	overflow:auto;
+	height:80%;
+}
+.console ul{
+	margin-left:1em;
+	background:transparent;	
+}
+.console ul li{
+	word-break: break-all;
+	word-wrap: break-word;
+	overflow: hidden;
+	
+}
+
+.console i{
+	content:'i';
+	width:10px;
+}
+.console li.error{
+	color:red;
+}
+.console li.warn{
+	color:#f70;
+}
+.console li.debug{
+	color:blue;
+}
+.console li.info{
+	color:lime;
+}
+
+.console li.error i:after{
+	content:'E';
+}
+.console li.warn i:after{
+	content:'W';
+}
+.console li.debug i:after{
+	content:'D';
+}
+.console li.info i:after{
+	content:'I';
+}
+.console .console-footer{
+	color: #CF0;
+	font-weight: bold;
+}
+.console #console-input{
+	color: #CF0;
+	width:90%;	
+	outline: none;
+	margin-left:5px;
+	line-height:18px;
+	font-size: 12px;
+	border: 0px solid #666;
+	background:transparent;
+	font-family:Consolas,"Courier New","LucidaConsole", Monaco, monospace;
+}
+
+
+
+
+.console li.log-flag{
+	color:#fff;
+}
+
+.console li.log-flag1{
+	color:yellow;
+}
+.console li.log-flag9{
+	color:blue;
+}
+.console li.log-flag2{
+	color:lime;
+}
+.console li.log-flag3{
+	color:#f70;
+}
+.console li.log-flag4{
+	color:red;
+}
+.console li.log-flag9 i:after{
+	content:'P ';
+}
+.console li.log-flag4 i:after{
+	content:'E ';
+}
+.console li.log-flag3 i:after{
+	content:'W ';
+}
+.console li.log-flag2 i:after{
+	content:'D ';
+}
+.console li.log-flag1 i:after{
+	content:'I ';
+}

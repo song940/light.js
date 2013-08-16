@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="./css/thinkaway.css"  />
+<link rel="stylesheet" href="./css/thinkaway-ui.css"  />
+<style>
+.wrapper{
+	width:100%;
+}
+.content{
+}
+#idContainer{ 	
+ 	width:600px; 
+ 	height:300px;
+ 	margin: 10px;
+ 	border: solid 10px #DDD;
+ 	border-radius: 5px;
+ }
+#idDrag{ 
+	border:5px solid #C4E3FD; 
+	background:#C4E3FD; 
+	width:50px; 
+	height:50px; 
+	top:50px; 
+	left:50px;
+}
+#idHandle{
+	cursor:move; 
+	height:25px; 
+	background:#0000FF; 
+	overflow:hidden;
+}
+</style>
+<script type="text/javascript" src="./js/thinkaway.js" ></script>
+<script type="text/javascript" src="./js/thinkaway.drag.js" ></script>
+<script>
+(function($){
+$(document).ready(function(){
+	var drag = $("#idDrag").draggable({ box: "idContainer", limit: true,
+		start: function(){ $("#idShow").html("开始拖放"); },
+		move: function(){ $("#idShow").html("left："+this[0].offsetLeft+"；top:"+this[0].offsetTop); },
+		stop: function(){ $("#idShow").html("结束拖放"); }
+	});	
+
+	$("#idReset").on('click',function(){
+		drag.limit = true;
+		drag.min_x = drag.min_y = 0;
+		drag.max_x = drag.max_y = 9999;
+		drag.lock_x = drag.lock_y = drag.lock = false;
+	});
+
+	$("#idLock").on('click',function(){ drag.lock = true; });
+	$("#idLockX").on('click',function(){ drag.lock_x = true; });
+	$("#idLockY").on('click',function(){ drag.lock_y = true; });
+	$("#idLimit").on('click',function(){ drag.max_x = drag.max_y = 200;drag.limit = true; });
+	$("#idLimitOff").on('click',function(){ drag.limit = false; });
+});
+})(ThinkAway);
+</script>
+
+</head>
+<body>
+<div class="wrapper">
+<div class="header">
+	<div class="logo"></div>
+	<h1 class="title"></h1>
+	<h2 class="desc"></h2>
+</div>
+<div id="content" class="content">
+	<div id="idContainer">
+		<div id="idDrag">
+			<div id="idHandle"></div>
+		</div>
+	</div>
+	<input class="btn" id="idReset" type="button" value="复位" />
+	<input class="btn blue" id="idLock" type="button" value="锁定" />
+	<input class="btn blue" id="idLockX" type="button" value="锁定水平" />
+	<input class="btn blue" id="idLockY" type="button" value="锁定垂直" />
+	<input class="btn blue" id="idLimit" type="button" value="范围锁定" />
+	<input class="btn blue" id="idLimitOff" type="button" value="取消范围锁定" />
+	<br />拖放状态：<span id="idShow">未开始</span>
+</div>
+<div class="footer">
+	
+</div>
+</div>
+</body>
+</html>

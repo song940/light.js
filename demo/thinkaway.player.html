@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="http://static.lsong.org/css/thinkaway.css"  />
+<link rel="stylesheet" href="http://static.lsong.org/css/thinkaway-ui.css"  />
+<style>
+html{
+	background:url(img/bg.jpg);
+}
+.wrapper{
+	width:60%;
+}
+.content{
+	margin:auto;
+	background:#000;
+}
+#player{
+	margin:auto;
+	width:640px;
+	height:360px;
+	
+}
+</style>
+<script type="text/javascript" src="./js/thinkaway.js"></script>
+<script type="text/javascript" src="./js/thinkaway.media.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+	var index = 0; 
+	var player =  $('#player').tplayer({
+		path:'video/',
+		file:[
+			'1/1','2/2','3/3','4/4','5/5'
+		],
+		format:[
+			'mp4','ogv','webm'
+		],
+		thumb:'jpg',
+		ended:function(){
+			index++;
+			play(index);
+		}
+	});
+	
+	function play(index){
+		player.load(index);
+		player.play();
+		$("button").each(function(btn){
+			$(btn).attr('className','btn');
+		});
+		$("button:"+index).attr('className',"btn blue");;
+	}
+	
+	$("button").each(function(btn){
+		$(btn).on('click',function(ev){
+			index =  parseInt($(this).html()) - 1;
+			play(index);
+		});
+	});
+	
+	$("#btnClose").on('click',function(){
+		player.stop();
+	});
+	
+	
+	
+	
+	
+	play(index);
+	
+});
+})(ThinkAway);
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="header">
+	<div class="logo"></div>
+	<h1 class="title">Video Player</h1>
+	<h2 class="desc"></h2>
+</div>
+<div class="content box">
+
+<video id="player" preload="Metadata" controls>
+not support.
+</video>
+<a class="btn blue" id="btnClose">Close</a>
+<br />
+<button class="btn">1</button>
+<button class="btn">2</button>
+<button class="btn">3</button>
+<button class="btn">4</button>
+<button class="btn">5</button>
+</div>
+<div class="footer">
+	<div class="copyright">
+		<p>
+			<a href="http://www.lsong.org" title="copyright LSONG.ORG 2012">
+				LSONG.ORG
+			</a>
+			&copy;2012 版权所有
+		</p>
+	</div>
+	<div class="engine">
+		由 <a>LSONG.ORG</a> 强力驱动
+	</div>
+</div>
+</div>
+</body>
+</html>

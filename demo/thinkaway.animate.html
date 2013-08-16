@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+
+    #container{ border:1px solid #000; width:500px; height:400px;}
+    #aa{ border:1px solid #000; width:100px; height:40px; background-color:#0f0; 
+         position:absolute; left:50px; top:50px; }
+    #bb{ border:1px solid #000; width:500px; height:40px; margin-top:100px;}
+    #cc{ border:1px solid #000; width:500px; height:40px;}
+
+    .dd{
+        border-radius: 100%;
+        background-color: #000;
+        position: absolute;
+    }
+</style>
+</head><body>
+<div id="container">
+<input id="Abegin" type="button" value="开始" /> 
+<input id="Apause" type="button" value="暂停" /> 
+<input onclick="location.reload()" type="button" value="刷新网页" />
+<div id="aa"><br /></div>
+<div id="bb">dfdfddfsd</div>
+<div id="cc">gregreger</div>
+</div>
+<script type="text/javascript" src='./js/thinkaway.beta.js'></script>
+<script type="text/javascript" src='./js/thinkaway.dom.js'></script>
+<script type="text/javascript" src='./js/thinkaway.color.js'></script>
+<script type="text/javascript" src='./js/thinkaway.animate.js'></script>
+<script type="text/javascript">
+$(function($){
+
+    var anim_list = [],tt;
+    anim_list.push(new $.Animate({
+                    elem:'#aa',
+                    css:{
+                        left: '200px',
+                        top: '200px',
+                        width: '200px',
+                        height: '200px',
+                        backgroundColor: '#f00',
+                        borderWidth: '8px' 
+                    },
+                    time: 4000,
+                    animType:'Tween.Bounce.easeInOut',
+                    start: function () { 
+                        this.innerHTML = 'start!';
+                        tt = (new Date()).getTime(); 
+                    },
+                    complete: function () { this.innerHTML = 'Completed!';
+                        $('#cc').text(((new Date()).getTime() - tt) + 'ms');
+                    }
+                }));
+    anim_list.push(new $.Animate({
+                    elem:'#bb',
+                    css:{
+                        marginTop:'160px',
+                        opacity:0.1,
+                        width: '200px',
+                        height: '200px',
+                        borderWidth: '8px'
+                    },
+                    time: 4000,
+                    animType:'Tween.Bounce.easeInOut',
+                    start: function () { 
+                        this.innerHTML = 'start!'; 
+                    },
+                    complete: function () { 
+                        this.innerHTML = 'Completed!'; }
+                }));
+
+    $('#Abegin').on('click',function(){       
+        $(anim_list).each(function(item,i){
+            item.start();
+        });
+    });
+
+    $('#Apause').on('click',function(){
+        $(anim_list).each(function(item,i){
+            item.stop();
+        });
+    });
+
+
+    $(document).on('click',function(ev){
+            ev = ev || window.event;
+
+            var rgb = [];
+            for(var i=0;i<3;i++){
+                rgb.push($.random(0,255));
+            }
+            var color = new $.Color(rgb.join(','));
+            var $div = $('<div>')
+                .css({
+                    'width':'50px',
+                    'height':'50px',
+                    'top':(ev.pageY - 25) + 'px',
+                    'left':(ev.pageX -25) + 'px',
+                    'backgroundColor':color.toRGB()
+                })
+                .attr({
+                    'class':'dd'
+                });
+            $(document.body).append($div);
+
+            $div.animate({
+                'width':'100px',
+                'height':'100px',
+                'opacity':0.1
+            },1000,function(){
+                $(this).remove();
+            });
+        });
+
+
+});
+    </script>
+</body>
+</html>

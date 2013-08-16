@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="http://static.lsong.org/css/thinkaway.css"  />
+<link rel="stylesheet" href="http://static.lsong.org/css/thinkaway-ui.css"  />
+
+<script type="text/javascript" src="http://static.lsong.org/js/thinkaway.js"></script>
+<script type="text/javascript" src="http://static.lsong.org/js/thinkaway.disk.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+
+$("#btn_calc").on("click",function(){
+    var html = "";
+    var size = $("#diskSize").val();
+	
+    if (isNaN(size) || size <= 0) {
+        html += "<div class='note red'>喂喂，你不输入数字我怎么帮你计算呢？<br/>记得是要大于0的数字，是数字...</div>"
+    } else {
+        html = '<table id="tb" border="1" class="tbl" >';
+        html += "<tr class=\"tbhead\"><td>分区大小（GB）</td><td>NTFS 格式设置大小（MB）</td><td>FAT32 格式设置大小（MB）</td></tr>";
+        html += "<tr><td class='gb'>" + size + " G</td><td>" + $.diskM2G("ntfs",size) + " MB</td><td>" + $.diskM2G("fat32",size) + " MB</td></tr>";
+        html += "</table>"
+        html += "<div class='note' colspan='3'>如果觉得这工具不错，请你帮我宣传一下它，谢谢！</div>"
+    }
+    $("#showResult").html(html);
+});
+
+$("#btn_make").on("click",function(){
+    html = '<table class="tbl" >';
+    html += "<thead><tr><td>分区大小（GB）</td><td>NTFS 格式设置大小（MB）</td><td>FAT32 格式设置大小（MB）</td></tr></thead>";
+    for (var i = 10; i <= 200; i = i + 5) {
+        html += "<tr><td>" + i + " G</td><td>" + $.diskM2G("ntfs",i) + " MB</td><td>" + $.diskM2G("fat32",i) + " MB</td></tr>"
+    }
+    html += "</table>";
+    html += "<div class='note' colspan='3'>如果觉得这工具不错，请你帮我宣传一下它，谢谢！</div>"
+    $("#showResult").html(html);
+});
+
+});
+})(ThinkAway);
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="header">
+	<div class="logo">
+	</div>
+	<h1><a>在线实用工具</a></h1>
+	<h2></h2>
+</div>
+<div class="content box">
+<h2 class="note">硬盘整数分区计算器</h2>
+<form>
+分区大小:
+<input id="diskSize" type="text" class="" />
+<a class="btn blue" id="btn_calc" >Calc</a>
+<a class="btn blue" id="btn_make" >Table</a>
+<div class="clear">
+<br />
+</div>
+<div id="showResult"></div>
+</form>
+</div>
+<div class="footer">
+	<div class="copyright">
+		<p>
+			<a href="http://www.lsong.org" title="copyright LSONG.ORG 2012">
+				LSONG.ORG
+			</a>
+			&copy;2012 版权所有
+		</p>
+	</div>
+	<div class="engine">
+		由 <a>LSONG.ORG</a> 强力驱动
+	</div>
+</div>
+</div>
+</body>
+<script src="//stats.lsong.org/stats.php?site=tools.lsong.org" language="javascript" type="text/javascript" ></script>
+</html>
